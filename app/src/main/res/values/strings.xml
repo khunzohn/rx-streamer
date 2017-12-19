@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">RxStreamer</string>
+    <string name="label_btn_retry">Retry</string>
+    <string name="error_fetch_news">Sorry but can\'t fetch news</string>
 </resources>
