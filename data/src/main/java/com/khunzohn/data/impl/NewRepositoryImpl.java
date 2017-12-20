@@ -1,5 +1,7 @@
 package com.khunzohn.data.impl;
 
+import com.khunzohn.data.exception.DataException;
+import com.khunzohn.data.exception.Issue;
 import com.khunzohn.domain.model.New;
 import com.khunzohn.domain.repository.NewRepository;
 
@@ -28,7 +30,7 @@ public class NewRepositoryImpl implements NewRepository {
                     news.add(New.success(i, "title " + i, "content " + i, "date", "reporter " + 1));
                 }
                 if (new Random().nextBoolean()) {
-                    return Observable.error(new Exception("Random error"));
+                    return Observable.error(new DataException(Issue.NETWORK));
                 }
                 return Observable.just(news);
             }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.khunzohn.rxstreamer.di.DaggerAppComponent;
+import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
 
@@ -15,7 +16,7 @@ import dagger.android.HasActivityInjector;
  * Created by khunzohn on 12/18/17.
  */
 
-public class RxApp extends Application implements HasActivityInjector{
+public class RxApp extends Application implements HasActivityInjector {
 
     @Inject
     DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
@@ -23,6 +24,12 @@ public class RxApp extends Application implements HasActivityInjector{
     @Override
     public void onCreate() {
         super.onCreate();
+
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(this);
+
         DaggerAppComponent.builder().application(this)
                 .build().inject(this);
 

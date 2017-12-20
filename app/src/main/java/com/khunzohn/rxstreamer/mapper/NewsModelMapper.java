@@ -29,7 +29,7 @@ public final class NewsModelMapper extends ModelMapper<NewsModel, News> {
 
     @Override
     public NewsModel map(News domainModel) {
-        int retryVisibility = View.GONE;
+        int retryVisibility = View.INVISIBLE;
         int progressVisibility = View.GONE;
         int errorVisibility = View.GONE;
         int newsVisibility = View.GONE;

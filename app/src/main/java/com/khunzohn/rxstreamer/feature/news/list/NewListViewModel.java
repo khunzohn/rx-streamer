@@ -12,15 +12,12 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
-import io.reactivex.subjects.PublishSubject;
 
 public final class NewListViewModel extends BaseViewModel {
 
     private static final String TAG = NewListViewModel.class.getSimpleName();
     private final NewsModelMapper newsModelMapper;
     private final GetNewsUseCase getNewsUseCase;
-
-    private PublishSubject<GetNewsUseCase.Action> getNewsAction = PublishSubject.create();
 
     private BehaviorSubject<NewsModel> newsModel = BehaviorSubject.create();
 

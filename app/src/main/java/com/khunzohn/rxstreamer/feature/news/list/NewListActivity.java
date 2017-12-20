@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jakewharton.rxbinding2.view.RxView;
 import com.khunzohn.rxstreamer.R;
 import com.khunzohn.rxstreamer.feature.BaseActivity;
 import com.khunzohn.rxstreamer.model.NewsModel;
@@ -52,13 +53,12 @@ public final class NewListActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_list);
         ButterKnife.bind(this);
-        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing_medium);
-        SingleItemDecoration decoration = new SingleItemDecoration(spacingInPixels);
-        rvNews.addItemDecoration(decoration);
-        newsAdapter = new NewsAdapter();
-        rvNews.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        rvNews.setAdapter(newsAdapter);
-        newListViewModel = ViewModelProviders.of(this, factory).get(NewListViewModel.class);
+
+        setUpRecyclerView();
+
+        newListViewModel = ViewModelProviders.of(this, factory)
+                .get(NewListViewModel.class);
+
         subscribe();
 
         if (savedInstanceState == null) {
@@ -70,6 +70,17 @@ public final class NewListActivity extends BaseActivity {
         add(newListViewModel.getNewsModel().subscribe(this::render));
 
         add(newsAdapter.getEventStream().subscribe(newModel -> Toast.makeText(NewListActivity.this, "Goto new detail of " + newModel.title(), Toast.LENGTH_SHORT).show()));
+
+        add(RxView.clicks(btnRetry).subscribe(ignored -> newListViewModel.getNews()));
+    }
+
+    private void setUpRecyclerView() {
+        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing_medium);
+        SingleItemDecoration decoration = new SingleItemDecoration(spacingInPixels);
+        rvNews.addItemDecoration(decoration);
+        newsAdapter = new NewsAdapter();
+        rvNews.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rvNews.setAdapter(newsAdapter);
     }
 
     private void render(NewsModel newsModel) {
