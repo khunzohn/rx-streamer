@@ -13,7 +13,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  */
 
 @Singleton
-public final class UiThread implements PostExecutionThread {
+public class UiThread implements PostExecutionThread {
 
     @Inject
     public UiThread() {

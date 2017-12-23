@@ -28,7 +28,7 @@ import dagger.android.AndroidInjection;
  * Created by khunzohn on 12/18/17.
  */
 
-public final class NewListActivity extends BaseActivity {
+public class NewListActivity extends BaseActivity {
     @BindView(R.id.tv_error)
     TextView tvError;
     @BindView(R.id.progress_bar)

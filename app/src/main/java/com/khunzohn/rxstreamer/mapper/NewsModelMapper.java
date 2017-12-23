@@ -17,7 +17,7 @@ import javax.inject.Inject;
  * Created by khunzohn on 12/18/17.
  */
 
-public final class NewsModelMapper extends ModelMapper<NewsModel, News> {
+public class NewsModelMapper extends ModelMapper<NewsModel, News> {
 
     private final NewModelMapper newModelMapper;
 

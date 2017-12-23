@@ -15,7 +15,7 @@ import javax.inject.Inject;
  * Created by khunzohn on 12/18/17.
  */
 
-public final class NewModelMapper extends ModelMapper<NewModel, New> {
+public class NewModelMapper extends ModelMapper<NewModel, New> {
 
     private final DateFormatter dateFormatter;
 

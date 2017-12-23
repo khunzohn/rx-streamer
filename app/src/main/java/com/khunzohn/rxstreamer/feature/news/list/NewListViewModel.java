@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
 
-public final class NewListViewModel extends BaseViewModel {
+public class NewListViewModel extends BaseViewModel {
 
     private static final String TAG = NewListViewModel.class.getSimpleName();
     private final NewsModelMapper newsModelMapper;

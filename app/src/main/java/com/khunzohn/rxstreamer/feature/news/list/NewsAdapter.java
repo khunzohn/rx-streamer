@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import com.khunzohn.rxstreamer.R;
 import com.khunzohn.rxstreamer.model.NewModel;
 
-import org.reactivestreams.Subscription;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +18,7 @@ import io.reactivex.subjects.PublishSubject;
  * Created by khunzohn on 12/19/17.
  */
 
-public final class NewsAdapter extends RecyclerView.Adapter<NewViewHolder> {
+public class NewsAdapter extends RecyclerView.Adapter<NewViewHolder> {
 
     private final PublishSubject<NewModel> itemClickSubject = PublishSubject.create();
 
