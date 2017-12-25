@@ -5,21 +5,21 @@ package com.khunzohn.data.exception;
  */
 
 public class DataException extends Exception {
-    private Issue issue;
+  private Issue issue;
 
-    public DataException(Issue issue) {
-        this.issue = issue;
-    }
+  public DataException(Issue issue) {
+    this.issue = issue;
+  }
 
-    public Issue getIssue() {
-        return issue;
-    }
+  public Issue getIssue() {
+    return issue;
+  }
 
-    public boolean is(Issue issue) {
-        return this.issue == issue;
-    }
+  public boolean is(Issue issue) {
+    return this.issue == issue;
+  }
 
-    public boolean shouldRetry() {
-        return issue.shouldRetry();
-    }
+  public boolean shouldRetry() {
+    return issue.shouldRetry();
+  }
 }

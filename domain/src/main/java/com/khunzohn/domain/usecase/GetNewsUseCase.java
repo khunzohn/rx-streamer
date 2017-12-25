@@ -4,34 +4,37 @@ import com.khunzohn.domain.executor.PostExecutionThread;
 import com.khunzohn.domain.executor.ThreadExecutor;
 import com.khunzohn.domain.model.News;
 import com.khunzohn.domain.repository.NewRepository;
-
 import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.schedulers.Schedulers;
+import javax.inject.Inject;
 
 /**
  * Created by khunzohn on 12/17/17.
  */
 
-public final class GetNewsUseCase extends UseCase<GetNewsUseCase.Action, News> {
+public class GetNewsUseCase extends UseCase<GetNewsUseCase.Action, News> {
 
-    private final NewRepository newRepository;
+  private final NewRepository newRepository;
 
-    public GetNewsUseCase(NewRepository newRepository, ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
-        super(threadExecutor, postExecutionThread);
-        this.newRepository = newRepository;
-    }
+  @Inject
+  public GetNewsUseCase(NewRepository newRepository, ThreadExecutor threadExecutor,
+      PostExecutionThread postExecutionThread) {
+    super(threadExecutor, postExecutionThread);
+    this.newRepository = newRepository;
+  }
 
-    @Override
-    public ObservableSource<News> apply(Observable<Action> action) {
-        return action.flatMap(act -> newRepository.getNews()
-                .map(News::success).onErrorReturn(News::error))
-                .subscribeOn(Schedulers.from(getThreadExecutor()))
-                .startWith(News.progress())
-                .observeOn(getPostExecutionThread().getScheduler());
-    }
+  @Override public Observable<News> execute(Action action) {
+    return newRepository.getNews().map(News::success);
+  }
 
-    public static class Action {
+  @Override public News error(Throwable throwable) {
+    return News.error(throwable);
+  }
 
-    }
+  @Override public News progress() {
+    return News.progress();
+  }
+
+  public static class Action {
+
+  }
 }

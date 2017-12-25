@@ -1,34 +1,85 @@
 package com.khunzohn.domain.model;
 
+import com.google.auto.value.AutoValue;
+
 /**
  * Created by khunzohn on 12/17/17.
  */
 
-public final class New extends DomainModel {
-    public final long id;
-    public final String title;
-    public final String content;
-    public final String date;
-    public final String reporter;
+@AutoValue
+public abstract class New extends DomainModel {
 
-    public New(long id, String title, String content, String date, String reporter, State state, Throwable error) {
-        super(error, state);
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.date = date;
-        this.reporter = reporter;
-    }
+  public static Builder success() {
+    return builder()
+        .error(null)
+        .state(State.SUCCESS);
+  }
 
-    public static New success(long id,String title,String content,String date,String reporter) {
-        return new New(id,title,content,date,reporter,State.SUCCESS,null);
-    }
+  public static New progress() {
+    return builder()
+        .id(1L)
+        .title("")
+        .content("")
+        .date("")
+        .reporter("")
+        .error(null)
+        .state(State.PROGRESS)
+        .build();
+  }
 
-    public static New progress() {
-        return new New(-1,"","","","",State.SUCCESS,null);
-    }
+  public static New error(Throwable error) {
+    return builder()
+        .id(1L)
+        .title("")
+        .content("")
+        .date("")
+        .reporter("")
+        .error(error)
+        .state(State.ERROR)
+        .build();
+  }
+  public abstract Long id();
 
-    public static New error(Throwable error) {
-        return new New(-1,"","","","",State.ERROR,error);
-    }
+  public abstract String title();
+
+  public abstract String content();
+
+  public abstract String date();
+
+  public abstract String reporter();
+
+  public static New create(Long id, String title, String content, String date, String reporter,
+      Throwable error, State state) {
+    return builder()
+        .id(id)
+        .title(title)
+        .content(content)
+        .date(date)
+        .reporter(reporter)
+        .error(error)
+        .state(state)
+        .build();
+  }
+
+  public static Builder builder() {
+    return new AutoValue_New.Builder();
+  }
+
+  @AutoValue.Builder public abstract static class Builder {
+    public abstract Builder id(Long id);
+
+    public abstract Builder title(String title);
+
+    public abstract Builder content(String content);
+
+    public abstract Builder date(String date);
+
+    public abstract Builder reporter(String reporter);
+
+    public abstract Builder error(Throwable error);
+
+    public abstract Builder state(State state);
+
+    public abstract New build();
+  }
 }

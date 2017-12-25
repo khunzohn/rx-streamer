@@ -8,11 +8,11 @@ import javax.inject.Inject;
 
 public class DateFormatter {
 
-    @Inject
-    public DateFormatter() {
-    }
+  @Inject
+  public DateFormatter() {
+  }
 
-    public String format(String pattern, String date) {
-        return date;
-    }
+  public String format(String pattern, String date) {
+    return date;
+  }
 }

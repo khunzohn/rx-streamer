@@ -1,5 +1,10 @@
 <resources>
   <string name="app_name">RxStreamer</string>
-    <string name="label_btn_retry">Retry</string>
-    <string name="error_fetch_news">Sorry but can\'t fetch news</string>
+  <string name="label_btn_retry">Retry</string>
+  <string name="error_fetch_news">Sorry but can\'t fetch news</string>
+  <string name="error_message_api">Sorry, something\'s wrong with api request</string>
+  <string name="error_message_server">Sorry, Server is not currently available</string>
+  <string name="error_message_network">Please check your network connection</string>
+  <string name="error_message_unknown">Unknown Error</string>
+  <string name="btn_label_dismiss">Dismiss</string>
 </resources>

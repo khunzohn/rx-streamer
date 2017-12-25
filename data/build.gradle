@@ -14,10 +14,20 @@ android {
 
   buildTypes {
 
+    debug {
+      buildConfigField "String", "BASE_URL", "\"https://api.github.com/\""
+    }
+
     release {
+      buildConfigField "String", "BASE_URL", "\"https://api.github.com/\""
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
   }
 }
 
@@ -28,7 +38,13 @@ dependencies {
   androidTestImplementation 'com.android.support.test:runner:1.0.1'
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
 
+  implementation "javax.annotation:jsr250-api:${versions.javaxAnnotationVersion}"
+  implementation "javax.inject:javax.inject:${versions.javaxInjectVersion}"
+
   implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
+  implementation 'com.google.code.gson:gson:2.8.0'
+  implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+  implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
 
   implementation project(':domain')
 }

@@ -1,7 +1,7 @@
 package com.khunzohn.rxstreamer.di;
 
+import com.khunzohn.rxstreamer.feature.main.MainActivity;
 import com.khunzohn.rxstreamer.feature.news.list.NewListActivity;
-
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -11,6 +11,9 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 abstract class ActivityBuilder {
 
-    @ContributesAndroidInjector
-    abstract NewListActivity contributeNewListActivity();
+  @ContributesAndroidInjector
+  abstract NewListActivity contributeNewListActivity();
+
+  @ContributesAndroidInjector(modules = MainFragmentBuilder.class)
+  abstract MainActivity contributeMainActivity();
 }

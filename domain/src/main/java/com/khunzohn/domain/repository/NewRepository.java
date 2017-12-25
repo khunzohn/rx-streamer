@@ -1,10 +1,8 @@
 package com.khunzohn.domain.repository;
 
 import com.khunzohn.domain.model.New;
-
-import java.util.List;
-
 import io.reactivex.Observable;
+import java.util.List;
 
 /**
  * Created by khunzohn on 12/17/17.
@@ -12,5 +10,5 @@ import io.reactivex.Observable;
 
 public interface NewRepository {
 
-    Observable<List<New>> getNews();
+  Observable<List<New>> getNews();
 }

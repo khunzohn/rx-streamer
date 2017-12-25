@@ -2,10 +2,8 @@ package com.khunzohn.rxstreamer.model;
 
 import com.google.auto.value.AutoValue;
 import com.khunzohn.rxstreamer.util.Visibility;
-
-import java.util.List;
-
 import io.reactivex.annotations.Nullable;
+import java.util.List;
 
 /**
  * Created by khunzohn on 12/10/17.
@@ -13,59 +11,60 @@ import io.reactivex.annotations.Nullable;
 @AutoValue
 public abstract class NewsModel {
 
-    @Visibility
-    public abstract int newsVisibility();
+  public static NewsModel create(int newsVisibility, int retryVisibility, int progressVisibility,
+      int errorVisibility, String retryMessage, String errorMessage, List<NewModel> newModels) {
+    return builder()
+        .newsVisibility(newsVisibility)
+        .retryVisibility(retryVisibility)
+        .progressVisibility(progressVisibility)
+        .errorVisibility(errorVisibility)
+        .retryMessage(retryMessage)
+        .errorMessage(errorMessage)
+        .newModels(newModels)
+        .build();
+  }
 
-    @Visibility
-    public abstract int retryVisibility();
+  public static Builder builder() {
+    return new AutoValue_NewsModel.Builder();
+  }
 
-    @Visibility
-    public abstract int progressVisibility();
+  @Visibility
+  public abstract int newsVisibility();
 
-    @Visibility
-    public abstract int errorVisibility();
+  @Visibility
+  public abstract int retryVisibility();
 
-    @Nullable
-    public abstract String retryMessage();
+  @Visibility
+  public abstract int progressVisibility();
 
-    @Nullable
-    public abstract String errorMessage();
+  @Visibility
+  public abstract int errorVisibility();
 
-    @Nullable
-    public abstract List<NewModel> newModels();
+  @Nullable
+  public abstract String retryMessage();
 
-    public static NewsModel create(int newsVisibility, int retryVisibility, int progressVisibility, int errorVisibility, String retryMessage, String errorMessage, List<NewModel> newModels) {
-        return builder()
-                .newsVisibility(newsVisibility)
-                .retryVisibility(retryVisibility)
-                .progressVisibility(progressVisibility)
-                .errorVisibility(errorVisibility)
-                .retryMessage(retryMessage)
-                .errorMessage(errorMessage)
-                .newModels(newModels)
-                .build();
-    }
+  @Nullable
+  public abstract String errorMessage();
 
-    public static Builder builder() {
-        return new AutoValue_NewsModel.Builder();
-    }
+  @Nullable
+  public abstract List<NewModel> newModels();
 
-    @AutoValue.Builder
-    public abstract static class Builder {
-        public abstract Builder retryVisibility(int retryVisibility);
+  @AutoValue.Builder
+  public abstract static class Builder {
+    public abstract Builder retryVisibility(int retryVisibility);
 
-        public abstract Builder progressVisibility(int progressVisibility);
+    public abstract Builder progressVisibility(int progressVisibility);
 
-        public abstract Builder errorVisibility(int errorVisibility);
+    public abstract Builder errorVisibility(int errorVisibility);
 
-        public abstract Builder retryMessage(String retryMessage);
+    public abstract Builder retryMessage(String retryMessage);
 
-        public abstract Builder newModels(List<NewModel> newModels);
+    public abstract Builder newModels(List<NewModel> newModels);
 
-        public abstract Builder errorMessage(String errorMessage);
+    public abstract Builder errorMessage(String errorMessage);
 
-        public abstract Builder newsVisibility(int newsVisibility);
+    public abstract Builder newsVisibility(int newsVisibility);
 
-        public abstract NewsModel build();
-    }
+    public abstract NewsModel build();
+  }
 }

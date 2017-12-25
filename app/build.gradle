@@ -5,61 +5,61 @@ def gitCommitCount = 100 + Integer.parseInt(
         'git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
 
 android {
-    compileSdkVersion versions.compileSdk
-    buildToolsVersion versions.buildTools
-    defaultConfig {
-        applicationId "com.khunzohn.rxstreamer"
-        minSdkVersion versions.minSdk
-        targetSdkVersion versions.targetSdk
-        versionCode gitCommitCount
-        versionName gitTag
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-    buildTypes {
-        debug {
+  compileSdkVersion versions.compileSdk
+  buildToolsVersion versions.buildTools
+  defaultConfig {
+    applicationId "com.khunzohn.rxstreamer"
+    minSdkVersion versions.minSdk
+    targetSdkVersion versions.targetSdk
+    versionCode gitCommitCount
+    versionName gitTag
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    debug {
 
-        }
-
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:0.5'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
-    implementation "com.android.support:design:${versions.supportLibrary}"
-    implementation "com.android.support:palette-v7:${versions.supportLibrary}"
-    implementation "com.android.support:recyclerview-v7:${versions.supportLibrary}"
-    implementation "com.android.support:support-dynamic-animation:${versions.supportLibrary}"
-    implementation "com.github.bumptech.glide:glide:${versions.glide}"
-    annotationProcessor "com.github.bumptech.glide:compiler:${versions.glide}"
-    implementation 'android.arch.lifecycle:extensions:1.0.0'
-    implementation "com.jakewharton:butterknife:${versions.butterknife}"
-    annotationProcessor "com.jakewharton:butterknife-compiler:${versions.butterknife}"
-    implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
-    implementation "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}"
-    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
-    implementation 'com.google.dagger:dagger:2.11'
-    implementation 'com.google.dagger:dagger-android:2.11'
-    implementation 'com.google.dagger:dagger-android-support:2.11'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
-    annotationProcessor 'com.google.auto.value:auto-value:1.3'
-    compileOnly 'com.google.auto.value:auto-value:1.3'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+  implementation fileTree(include: ['*.jar'], dir: 'libs')
+  implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+  testImplementation 'junit:junit:4.12'
+  androidTestImplementation 'com.android.support.test:runner:0.5'
+  androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
+  implementation "com.android.support:design:${versions.supportLibrary}"
+  implementation "com.android.support:palette-v7:${versions.supportLibrary}"
+  implementation "com.android.support:recyclerview-v7:${versions.supportLibrary}"
+  implementation "com.android.support:support-dynamic-animation:${versions.supportLibrary}"
+  implementation "com.github.bumptech.glide:glide:${versions.glide}"
+  annotationProcessor "com.github.bumptech.glide:compiler:${versions.glide}"
+  implementation 'android.arch.lifecycle:extensions:1.0.0'
+  implementation "com.jakewharton:butterknife:${versions.butterknife}"
+  annotationProcessor "com.jakewharton:butterknife-compiler:${versions.butterknife}"
+  implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
+  implementation "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}"
+  implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+  implementation 'com.google.dagger:dagger:2.11'
+  implementation 'com.google.dagger:dagger-android:2.11'
+  implementation 'com.google.dagger:dagger-android-support:2.11'
+  annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
+  annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+  annotationProcessor 'com.google.auto.value:auto-value:1.3'
+  compileOnly 'com.google.auto.value:auto-value:1.3'
+  debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+  releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 
-    implementation project(':data')
-    implementation project(':domain')
+  implementation project(':data')
+  implementation project(':domain')
 }

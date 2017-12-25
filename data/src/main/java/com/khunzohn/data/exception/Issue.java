@@ -5,15 +5,15 @@ package com.khunzohn.data.exception;
  */
 
 public enum Issue {
-    NETWORK(true), SERVER(false), API(false);
+  NETWORK(true), SERVER(false), API(false);
 
-    private boolean shouldRetry;
+  private boolean shouldRetry;
 
-    Issue(boolean shouldRetry) {
-        this.shouldRetry = shouldRetry;
-    }
+  Issue(boolean shouldRetry) {
+    this.shouldRetry = shouldRetry;
+  }
 
-    public boolean shouldRetry() {
-        return shouldRetry;
-    }
+  public boolean shouldRetry() {
+    return shouldRetry;
+  }
 }
