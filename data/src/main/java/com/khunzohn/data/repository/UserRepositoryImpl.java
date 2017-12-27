@@ -1,4 +1,4 @@
-package com.khunzohn.data.impl;
+package com.khunzohn.data.repository;
 
 import com.khunzohn.data.datasource.user.network.NetworkUserDataSource;
 import com.khunzohn.domain.model.User;

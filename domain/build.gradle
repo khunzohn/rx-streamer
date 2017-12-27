@@ -14,13 +14,11 @@ apply plugin: "net.ltgt.apt"
 
 configurations {
   compileOnly
-  provided
 }
 
 sourceSets {
   main {
     compileClasspath += configurations.compileOnly
-    compileClasspath += configurations.provided
   }
 }
 
@@ -29,6 +27,8 @@ dependencies {
   implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
   compileOnly 'com.google.auto.value:auto-value:1.3'
   apt 'com.google.auto.value:auto-value:1.3'
+
+  compileOnly files('build/libs/domain.jar')
 
   implementation "javax.annotation:jsr250-api:${versions.javaxAnnotationVersion}"
   implementation "javax.inject:javax.inject:${versions.javaxInjectVersion}"

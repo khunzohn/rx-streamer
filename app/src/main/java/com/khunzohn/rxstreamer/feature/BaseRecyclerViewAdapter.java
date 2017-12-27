@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Reactive BaseRecyclerViewAdapter
  * Created by khunzohn on 12/25/17.
  */
 
@@ -51,7 +52,7 @@ public abstract class BaseRecyclerViewAdapter<T, V extends BaseViewHolder<T>>
     return models.size();
   }
 
-  public Observable<T> onItemClickStream() {
+  public Observable<T> itemClickStream() {
     return modelSubject;
   }
 

@@ -76,16 +76,16 @@ public class UsersFragment extends BaseFragment {
 
   private void startSubscriptions() {
     add(usersViewModel.getUsersStream().subscribe(this::render));
-    add(userAdapter.onItemClickStream().subscribe(this::goToUserDetail));
+    add(userAdapter.itemClickStream().subscribe(this::goToUserDetail));
     add(RxView.clicks(btnRetry).subscribe(ignored -> usersViewModel.getUsers()));
   }
 
   private void render(UsersModel usersModel) {
     layoutError.setVisibility(usersModel.errorVisibility());
     btnRetry.setVisibility(usersModel.retryVisibility());
-    tvError.setText(usersModel.errorMessage());
     progressBar.setVisibility(usersModel.progressVisibility());
     rvUsers.setVisibility(usersModel.userListVisibility());
+    tvError.setText(usersModel.errorMessage());
     userAdapter.setModels(usersModel.userModels());
   }
 
