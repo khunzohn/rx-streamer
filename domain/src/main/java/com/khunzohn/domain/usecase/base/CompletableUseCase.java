@@ -1,4 +1,4 @@
-package com.khunzohn.domain.usecase;
+package com.khunzohn.domain.usecase.base;
 
 import com.khunzohn.domain.executor.PostExecutionThread;
 import com.khunzohn.domain.executor.ThreadExecutor;
@@ -23,5 +23,5 @@ public abstract class CompletableUseCase<Action> {
     return executeInternal(action).subscribeOn(Schedulers.from(threadExecutor)).observeOn(postExecutionThread.getScheduler());
   }
 
-  abstract Completable executeInternal(Action action);
+  protected abstract Completable executeInternal(Action action);
 }

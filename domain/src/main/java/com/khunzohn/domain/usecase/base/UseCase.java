@@ -1,4 +1,4 @@
-package com.khunzohn.domain.usecase;
+package com.khunzohn.domain.usecase.base;
 
 import com.khunzohn.domain.executor.PostExecutionThread;
 import com.khunzohn.domain.executor.ThreadExecutor;
@@ -17,7 +17,7 @@ public abstract class UseCase<Action, Result>
   private final ThreadExecutor threadExecutor;
   private final PostExecutionThread postExecutionThread;
 
-  UseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
+  public UseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
     this.threadExecutor = threadExecutor;
     this.postExecutionThread = postExecutionThread;
   }

@@ -4,6 +4,7 @@ import com.khunzohn.domain.executor.PostExecutionThread;
 import com.khunzohn.domain.executor.ThreadExecutor;
 import com.khunzohn.domain.model.News;
 import com.khunzohn.domain.repository.NewRepository;
+import com.khunzohn.domain.usecase.base.UseCase;
 import io.reactivex.Observable;
 import javax.inject.Inject;
 

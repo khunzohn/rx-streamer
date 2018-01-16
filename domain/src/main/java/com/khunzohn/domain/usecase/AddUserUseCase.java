@@ -4,8 +4,10 @@ import com.khunzohn.domain.executor.PostExecutionThread;
 import com.khunzohn.domain.executor.ThreadExecutor;
 import com.khunzohn.domain.model.User;
 import com.khunzohn.domain.repository.UserRepository;
+import com.khunzohn.domain.usecase.base.CompletableUseCase;
 import io.reactivex.Completable;
 import javax.inject.Inject;
+
 /**
  * Created by KHUNZOHN on 12/1/18.
  */
