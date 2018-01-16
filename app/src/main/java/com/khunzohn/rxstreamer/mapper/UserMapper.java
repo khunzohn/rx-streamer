@@ -11,10 +11,10 @@ import javax.inject.Inject;
  * Created by khunzohn on 12/23/17.
  */
 
-public class UserModelMapper extends ModelMapper<UserModel, User> {
+public class UserMapper extends DomainMapper<UserModel, User> {
 
   @Inject
-  public UserModelMapper(Context context) {
+  public UserMapper(Context context) {
     super(context);
   }
 

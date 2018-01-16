@@ -6,11 +6,14 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * Created by khunzohn on 12/19/17.
  */
 
+@Singleton
 public final class JobsExecutor implements ThreadExecutor {
   private static final int INITIAL_POOL_SIZE = 3;
   private static final int MAX_POOL_SIZE = 5;
@@ -27,6 +30,7 @@ public final class JobsExecutor implements ThreadExecutor {
 
   private final ThreadFactory threadFactory;
 
+  @Inject
   public JobsExecutor() {
     this.workQueue = new LinkedBlockingQueue<>();
     this.threadFactory = new JobThreadFactory();

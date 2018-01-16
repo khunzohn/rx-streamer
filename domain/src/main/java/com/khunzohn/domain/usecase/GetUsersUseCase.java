@@ -22,16 +22,16 @@ public class GetUsersUseCase extends UseCase<GetUsersUseCase.Action, Users> {
     this.userRepository = userRepository;
   }
 
-  @Override public Observable<Users> execute(Action action) {
-    return userRepository.getUsers().map(Users::success);
+  @Override public Observable<Users> execute(Action ignored) {
+    return userRepository.streamUsers().toObservable();
   }
 
   @Override public Users progress() {
-    return Users.progress();
+    return Users.progress(null);
   }
 
   @Override public Users error(Throwable throwable) {
-    return Users.error(throwable);
+    return Users.error(throwable,null);
   }
 
   public static class Action {

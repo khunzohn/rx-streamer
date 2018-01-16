@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import com.khunzohn.data.exception.DataException;
 import com.khunzohn.domain.model.Users;
+import com.khunzohn.rxstreamer.R;
 import com.khunzohn.rxstreamer.model.UserModel;
 import com.khunzohn.rxstreamer.model.UsersModel;
 import com.khunzohn.rxstreamer.util.IssueFactory;
@@ -15,13 +16,13 @@ import javax.inject.Inject;
  * Created by khunzohn on 12/23/17.
  */
 
-public class UsersModelMapper extends ModelMapper<UsersModel, Users> {
+public class UsersMapper extends DomainMapper<UsersModel, Users> {
 
-  private final UserModelMapper userModelMapper;
+  private final UserMapper userModelMapper;
   private final IssueFactory issueFactory;
 
   @Inject
-  public UsersModelMapper(Context context, UserModelMapper userModelMapper,
+  public UsersMapper(Context context, UserMapper userModelMapper,
       IssueFactory issueFactory) {
     super(context);
     this.issueFactory = issueFactory;
@@ -29,7 +30,10 @@ public class UsersModelMapper extends ModelMapper<UsersModel, Users> {
   }
 
   @Override public UsersModel map(Users domainModel) {
+    boolean errorIncludeData = false;
+    boolean shouldRetry = false;
     int progressVisibility = View.GONE;
+    String errorActionMessage = "";
     int errorVisibility = View.GONE;
     int retryVisibility = View.INVISIBLE;
     int userListVisibility = View.GONE;
@@ -42,17 +46,33 @@ public class UsersModelMapper extends ModelMapper<UsersModel, Users> {
         break;
       case PROGRESS:
         progressVisibility = View.VISIBLE;
+        if (domainModel.users() != null && domainModel.users().size() > 0) {
+          userModels = userModelMapper.map(domainModel.users());
+          userListVisibility = View.VISIBLE;
+        }
         break;
       case ERROR:
         errorVisibility = View.VISIBLE;
+        errorActionMessage = getContext().getString(R.string.error_action_message_ok);
+
         if (domainModel.error() instanceof DataException) {
           DataException de = (DataException) domainModel.error();
           if (de.shouldRetry()) {
+            errorActionMessage = getContext().getString(R.string.error_action_message_retry);
             retryVisibility = View.VISIBLE;
+            shouldRetry = true;
           }
           errorMessage = issueFactory.getMessage(de.getIssue());
         } else {
           errorMessage = domainModel.error().getLocalizedMessage();
+        }
+
+        if (domainModel.users() != null && domainModel.users().size() > 0) {
+          userModels = userModelMapper.map(domainModel.users());
+          userListVisibility = View.VISIBLE;
+          errorVisibility = View.GONE;
+          retryVisibility = View.INVISIBLE;
+          errorIncludeData = true;
         }
         break;
       default:
@@ -60,6 +80,9 @@ public class UsersModelMapper extends ModelMapper<UsersModel, Users> {
     }
 
     return UsersModel.builder()
+        .shouldRetry(shouldRetry)
+        .errorActionMessage(errorActionMessage)
+        .errorIncludeData(errorIncludeData)
         .progressVisibility(progressVisibility)
         .errorVisibility(errorVisibility)
         .retryVisibility(retryVisibility)

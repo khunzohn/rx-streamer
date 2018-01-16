@@ -48,6 +48,15 @@ public abstract class BaseFragment extends Fragment {
         .show();
   }
 
+  public void showSnack(String message, String actionMessage, View.OnClickListener onClickListener,
+      int duration) {
+    View rootContent = getActivity().findViewById(android.R.id.content);
+    Snackbar.make(rootContent, message, duration)
+        .setAction(actionMessage, onClickListener)
+        .setActionTextColor(getResources().getColor(R.color.colorPrimary))
+        .show();
+  }
+
   public void add(Disposable disposable) {
     if (compositeDisposable != null) {
       compositeDisposable.add(disposable);

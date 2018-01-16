@@ -2,6 +2,8 @@ package com.khunzohn.rxstreamer.di;
 
 import android.content.Context;
 import com.khunzohn.data.executor.JobsExecutor;
+import com.khunzohn.data.network.RestAdapter;
+import com.khunzohn.data.network.service.UserService;
 import com.khunzohn.domain.executor.PostExecutionThread;
 import com.khunzohn.domain.executor.ThreadExecutor;
 import com.khunzohn.rxstreamer.RxApp;
@@ -27,9 +29,6 @@ abstract class AppModule {
   @Binds
   abstract PostExecutionThread bindPostExecutionThread(UiThread uiThread);
 
-  @Provides
-  @Singleton
-  static ThreadExecutor provideThreadExecutor() {
-    return new JobsExecutor();
-  }
+  @Binds
+  abstract ThreadExecutor provideThreadExecutor(JobsExecutor jobsExecutor);
 }

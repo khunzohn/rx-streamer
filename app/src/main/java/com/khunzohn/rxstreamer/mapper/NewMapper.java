@@ -12,12 +12,12 @@ import javax.inject.Inject;
  * Created by khunzohn on 12/18/17.
  */
 
-public class NewModelMapper extends ModelMapper<NewModel, New> {
+public class NewMapper extends DomainMapper<NewModel, New> {
 
   private final DateFormatter dateFormatter;
 
   @Inject
-  public NewModelMapper(Context context, DateFormatter dateFormatter) {
+  public NewMapper(Context context, DateFormatter dateFormatter) {
     super(context);
     this.dateFormatter = dateFormatter;
   }

@@ -28,6 +28,7 @@ public class NewRepositoryImpl implements NewRepository {
 
   @Override
   public Observable<List<New>> getNews() {
+    //temp mock implementation
     return Observable.defer(() -> {
       List<New> news = new ArrayList<>();
       for (Long i = 0L; i < 10; i++) {
@@ -44,6 +45,6 @@ public class NewRepositoryImpl implements NewRepository {
         return Observable.error(new DataException(Issue.NETWORK));
       }
       return Observable.just(news);
-    }).delay(2, TimeUnit.SECONDS);
+    }).delay(2, TimeUnit.SECONDS); // delay to simulate loading time
   }
 }

@@ -1,7 +1,7 @@
-package com.khunzohn.data.datasource.user.network;
+package com.khunzohn.data.network.service;
 
 import com.khunzohn.data.constant.URL;
-import com.khunzohn.data.entity.UserEntity;
+import com.khunzohn.data.model.response.UserResponse;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -12,5 +12,5 @@ import retrofit2.http.GET;
 
 public interface UserService {
 
-  @GET(URL.USERS) Call<List<UserEntity>> getUsers();
+  @GET(URL.USERS) Call<List<UserResponse>> getUsers();
 }

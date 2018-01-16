@@ -6,11 +6,11 @@ import android.content.Context;
  * Created by khunzohn on 12/18/17.
  */
 
-public abstract class ModelMapper<V, D> {
+public abstract class DomainMapper<V, D> {
 
   private final Context context;
 
-  public ModelMapper(Context context) {
+  public DomainMapper(Context context) {
     this.context = context;
   }
 

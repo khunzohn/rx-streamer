@@ -10,19 +10,16 @@ import com.khunzohn.rxstreamer.model.NewsModel;
 import java.util.List;
 import javax.inject.Inject;
 
-import static com.khunzohn.domain.model.DomainModel.State.PROGRESS;
-import static com.khunzohn.domain.model.DomainModel.State.SUCCESS;
-
 /**
  * Created by khunzohn on 12/18/17.
  */
 
-public class NewsModelMapper extends ModelMapper<NewsModel, News> {
+public class NewsMapper extends DomainMapper<NewsModel, News> {
 
-  private final NewModelMapper newModelMapper;
+  private final NewMapper newModelMapper;
 
   @Inject
-  public NewsModelMapper(Context context, NewModelMapper newModelMapper) {
+  public NewsMapper(Context context, NewMapper newModelMapper) {
     super(context);
     this.newModelMapper = newModelMapper;
   }

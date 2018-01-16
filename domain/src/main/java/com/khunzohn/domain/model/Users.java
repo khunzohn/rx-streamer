@@ -1,6 +1,8 @@
 package com.khunzohn.domain.model;
 
 import com.google.auto.value.AutoValue;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,25 +13,27 @@ import java.util.List;
 @AutoValue
 public abstract class Users extends DomainModel {
 
-  public static Users success(List<User> users) {
+  public static Users success(@NonNull List<User> users) {
     return builder()
         .state(State.SUCCESS)
         .users(users)
         .build();
   }
 
-  public static Users error(Throwable error) {
+  public static Users error(Throwable error,@Nullable List<User> users) {
+    List<User> userList = users != null? users: new ArrayList<>();
     return builder()
         .error(error)
         .state(State.ERROR)
-        .users(new ArrayList<>())
+        .users(userList)
         .build();
   }
 
-  public static Users progress() {
+  public static Users progress(@Nullable List<User> users) {
+    List<User> userList = users != null? users: new ArrayList<>();
     return builder()
         .state(State.PROGRESS)
-        .users(new ArrayList<>())
+        .users(userList)
         .build();
   }
 

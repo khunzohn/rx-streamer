@@ -34,6 +34,7 @@ public class UsersFragment extends BaseFragment {
   @BindView(R.id.layout_error) RelativeLayout layoutError;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.rv_users) RecyclerView rvUsers;
+  @BindView(R.id.btn_add) Button btnAdd;
 
   @Inject ViewModelProvider.Factory factory;
 
@@ -78,6 +79,7 @@ public class UsersFragment extends BaseFragment {
     add(usersViewModel.getUsersStream().subscribe(this::render));
     add(userAdapter.itemClickStream().subscribe(this::goToUserDetail));
     add(RxView.clicks(btnRetry).subscribe(ignored -> usersViewModel.getUsers()));
+    add(RxView.clicks(btnAdd).subscribe(ignored -> usersViewModel.addUser()));
   }
 
   private void render(UsersModel usersModel) {
@@ -87,6 +89,13 @@ public class UsersFragment extends BaseFragment {
     rvUsers.setVisibility(usersModel.userListVisibility());
     tvError.setText(usersModel.errorMessage());
     userAdapter.setModels(usersModel.userModels());
+    if (usersModel.errorIncludeData()) {
+      showSnack(usersModel.errorMessage(), usersModel.errorActionMessage(), v -> {
+        if (usersModel.shouldRetry()) {
+          usersViewModel.getUsers();
+        }
+      }, Snackbar.LENGTH_INDEFINITE);
+    }
   }
 
   private void goToUserDetail(UserModel userModel) {

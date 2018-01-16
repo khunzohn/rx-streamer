@@ -9,6 +9,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
+ * App module doesn't know anything about Retrofit thus can't inject from there using dagger.
+ *
+ *
  * Created by khunzohn on 12/25/17.
  */
 
