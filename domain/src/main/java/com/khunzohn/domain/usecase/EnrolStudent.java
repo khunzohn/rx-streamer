@@ -51,11 +51,16 @@ public class EnrolStudent
   }
 
   private boolean isNotValid(Action action) {
-    if (action.name == null || action.name.equals("")) {
+
+    if (action.name == null || action.name.trim().equals("")) {
       openIssue(NameIssue.EMPTY);
+    } else if (action.name.trim().contains("@")) {
+      openIssue(NameIssue.INVALID);
     }
 
-    if (action.phone == null || action.phone.length() > 12) {
+    if (action.phone == null || action.phone.trim().equals("")) {
+      openIssue(PhoneIssue.EMPTY);
+    } else if (action.phone.length() > 12) {
       openIssue(PhoneIssue.INVALID);
     }
 
@@ -66,14 +71,16 @@ public class EnrolStudent
     if (action.adderss == null || action.adderss.equals("")) {
       openIssue(AddressIssue.EMPTY);
     }
-    if (action.ssn == null || action.ssn.length() > 12) {
+    if (action.ssn == null || action.ssn.trim().equals("")) {
+      openIssue(SSNIssue.EMPTY);
+    } else if (action.ssn.length() > 12) {
       openIssue(SSNIssue.MORE_THAN_12_CHAR);
     }
     return hasIssues();
   }
 
   private boolean validateEmail(String email) {
-    return email != null && email.contains("@");
+    return email != null && email.contains("@") && !email.trim().equals("") && email.length() > 5;
   }
 
   private Student buildStudentFrom(Action action) {

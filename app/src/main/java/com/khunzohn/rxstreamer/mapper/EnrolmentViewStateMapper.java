@@ -88,33 +88,40 @@ public class EnrolmentViewStateMapper extends ViewStateMapper<EnrolmentViewState
         (StudentIssueManager) studentException.getDomainIssueManager();
     issueManager.delegate(new StudentIssueHandler() {
       @Override public void handle(PhoneIssue phoneIssue) {
-        phoneError = getContext().getString(R.string.error_message_invalid_phone);
         if (phoneIssue == PhoneIssue.INVALID) {
+          phoneError = getContext().getString(R.string.error_message_invalid_phone);
         } else if (phoneIssue == PhoneIssue.EMPTY) {
+          phoneError = "Phone number is empty";
         }
       }
 
       @Override public void handle(NameIssue nameIssue) {
-        nameError = "Name is invalid";
         if (nameIssue == NameIssue.INVALID) {
+          nameError = "Name is invalid";
+        }
+        if (nameIssue == NameIssue.EMPTY) {
+          nameError = "Name is empty";
         }
       }
 
       @Override public void handle(EmailIssue emailIssue) {
-        emailError = "Email is empty";
-        if (emailIssue == EmailIssue.EMPTY) {
+        if (emailIssue == EmailIssue.INVALID) {
+          emailError = "Email is invalid";
         }
       }
 
       @Override public void handle(AddressIssue addressIssue) {
-        addressError = "Address is invalid";
-        if (addressIssue == AddressIssue.INVALID) {
+        if (addressIssue == AddressIssue.EMPTY) {
+          addressError = "Address is empty";
         }
       }
 
       @Override public void handle(SSNIssue ssnIssue) {
-        ssnError = "SSN has more than 12 character";
+        if (ssnIssue == SSNIssue.EMPTY) {
+          ssnError = "SSN is empty";
+        }
         if (ssnIssue == SSNIssue.MORE_THAN_12_CHAR) {
+          ssnError = "SSN has more than 12 character";
         }
       }
     });

@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -69,7 +71,10 @@ public class AddStudentActivity extends BaseActivity {
         .map(CharSequence::toString)
         .subscribe(viewModel::setEmail));
 
-    add(RxView.clicks(btnEnrol).subscribe(ignored -> viewModel.enrolStudent()));
+    add(RxView.clicks(btnEnrol).subscribe(ignored -> {
+      hideKeyboard();
+      viewModel.enrolStudent();
+    }));
 
     add(viewModel.getEnrolmentViewState().subscribe(this::render));
   }

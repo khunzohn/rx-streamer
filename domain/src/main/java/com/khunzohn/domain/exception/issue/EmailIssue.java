@@ -7,5 +7,5 @@ import com.khunzohn.domain.exception.base.DomainIssue;
  */
 
 public enum EmailIssue implements DomainIssue {
-  EMPTY,INVALID
+  INVALID
 }
