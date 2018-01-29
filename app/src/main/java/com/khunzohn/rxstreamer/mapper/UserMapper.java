@@ -11,7 +11,7 @@ import javax.inject.Inject;
  * Created by khunzohn on 12/23/17.
  */
 
-public class UserMapper extends DomainMapper<UserModel, User> {
+public class UserMapper extends ViewStateMapper<UserModel, User> {
 
   @Inject
   public UserMapper(Context context) {

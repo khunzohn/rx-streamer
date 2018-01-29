@@ -12,7 +12,7 @@ import javax.inject.Inject;
  * Created by khunzohn on 12/18/17.
  */
 
-public class NewMapper extends DomainMapper<NewModel, New> {
+public class NewMapper extends ViewStateMapper<NewModel, New> {
 
   private final DateFormatter dateFormatter;
 

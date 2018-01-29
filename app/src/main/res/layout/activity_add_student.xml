@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Enrol a new student"
+      android:layout_marginLeft="4dp"
+      />
+  <EditText
+      android:id="@+id/edtName"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Name"
+      />
+  <EditText
+      android:id="@+id/edtAddress"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Address"
+      />
+  <EditText
+      android:id="@+id/edtPhone"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Phone"
+      />
+  <EditText
+      android:id="@+id/edtSsn"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="SSN"
+      />
+  <EditText
+      android:id="@+id/edtEmail"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Email"
+      />
+  <ProgressBar
+      android:id="@+id/progressBar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:visibility="gone"
+      />
+  <Button
+      android:id="@+id/btnEnrol"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Enrol"
+      android:layout_gravity="center_horizontal"
+      android:visibility="visible"
+      />
+</LinearLayout>

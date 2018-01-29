@@ -16,7 +16,7 @@ import javax.inject.Inject;
  * Created by khunzohn on 12/23/17.
  */
 
-public class UsersMapper extends DomainMapper<UsersModel, Users> {
+public class UsersMapper extends ViewStateMapper<UsersModel, Users> {
 
   private final UserMapper userModelMapper;
   private final IssueFactory issueFactory;

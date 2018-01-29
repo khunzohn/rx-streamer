@@ -47,4 +47,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         .setActionTextColor(getResources().getColor(R.color.colorPrimary))
         .show();
   }
+
+  public void showSnack(String message, String actionMessage, View.OnClickListener onClickListener,
+      int duration) {
+    View rootContent = findViewById(android.R.id.content);
+    Snackbar.make(rootContent, message, duration)
+        .setAction(actionMessage, onClickListener)
+        .setActionTextColor(getResources().getColor(R.color.colorPrimary))
+        .show();
+  }
 }

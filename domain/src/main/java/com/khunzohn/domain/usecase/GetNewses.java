@@ -12,12 +12,12 @@ import javax.inject.Inject;
  * Created by khunzohn on 12/17/17.
  */
 
-public class GetNewsUseCase extends UseCase<GetNewsUseCase.Action, News> {
+public class GetNewses extends UseCase<GetNewses.Action, News> {
 
   private final NewRepository newRepository;
 
   @Inject
-  public GetNewsUseCase(NewRepository newRepository, ThreadExecutor threadExecutor,
+  public GetNewses(NewRepository newRepository, ThreadExecutor threadExecutor,
       PostExecutionThread postExecutionThread) {
     super(threadExecutor, postExecutionThread);
     this.newRepository = newRepository;

@@ -2,7 +2,7 @@ package com.khunzohn.rxstreamer.feature.news.list;
 
 import android.util.Log;
 import com.khunzohn.domain.model.News;
-import com.khunzohn.domain.usecase.GetNewsUseCase;
+import com.khunzohn.domain.usecase.GetNewses;
 import com.khunzohn.rxstreamer.feature.BaseViewModel;
 import com.khunzohn.rxstreamer.mapper.NewsMapper;
 import com.khunzohn.rxstreamer.model.NewsModel;
@@ -14,19 +14,19 @@ public class NewListViewModel extends BaseViewModel {
 
   private static final String TAG = NewListViewModel.class.getSimpleName();
   private final NewsMapper newsModelMapper;
-  private final GetNewsUseCase getNewsUseCase;
+  private final GetNewses getNewses;
 
   private BehaviorSubject<NewsModel> newsModel = BehaviorSubject.create();
 
-  @Inject NewListViewModel(GetNewsUseCase getNewsUseCase, NewsMapper newsModelMapper) {
+  @Inject NewListViewModel(GetNewses getNewses, NewsMapper newsModelMapper) {
     Log.e(TAG, "constructor");
     this.newsModelMapper = newsModelMapper;
-    this.getNewsUseCase = getNewsUseCase;
+    this.getNewses = getNewses;
   }
 
   void getNews() {
-    add(Observable.just(new GetNewsUseCase.Action())
-        .compose(getNewsUseCase)
+    add(Observable.just(new GetNewses.Action())
+        .compose(getNewses)
         .map(newsModelMapper::map)
         .subscribe(newsModel::onNext, this::mapErrorAndEmit));
   }

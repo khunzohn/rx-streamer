@@ -14,7 +14,7 @@ import javax.inject.Inject;
  * Created by khunzohn on 12/18/17.
  */
 
-public class NewsMapper extends DomainMapper<NewsModel, News> {
+public class NewsMapper extends ViewStateMapper<NewsModel, News> {
 
   private final NewMapper newModelMapper;
 

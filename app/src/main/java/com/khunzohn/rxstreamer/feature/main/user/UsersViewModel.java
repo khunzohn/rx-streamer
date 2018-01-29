@@ -1,11 +1,11 @@
 package com.khunzohn.rxstreamer.feature.main.user;
 
 import android.util.Log;
-import com.khunzohn.domain.model.DomainModel;
+import com.khunzohn.domain.model.State;
 import com.khunzohn.domain.model.User;
 import com.khunzohn.domain.model.Users;
-import com.khunzohn.domain.usecase.AddUserUseCase;
-import com.khunzohn.domain.usecase.GetUsersUseCase;
+import com.khunzohn.domain.usecase.AddUser;
+import com.khunzohn.domain.usecase.GetUsers;
 import com.khunzohn.rxstreamer.feature.BaseViewModel;
 import com.khunzohn.rxstreamer.mapper.UsersMapper;
 import com.khunzohn.rxstreamer.model.UsersModel;
@@ -22,23 +22,23 @@ import static android.content.ContentValues.TAG;
 
 public class UsersViewModel extends BaseViewModel {
 
-  private final GetUsersUseCase getUsersUseCase;
+  private final GetUsers getUsers;
   private final UsersMapper usersModelMapper;
 
   private final BehaviorSubject<UsersModel> userSubject;
-  private final AddUserUseCase addUserUseCase;
+  private final AddUser addUser;
 
   @Inject
-  public UsersViewModel(GetUsersUseCase getUsersUseCase, UsersMapper usersModelMapper,AddUserUseCase addUserUseCase) {
-    this.getUsersUseCase = getUsersUseCase;
-    this.addUserUseCase = addUserUseCase;
+  public UsersViewModel(GetUsers getUsers, UsersMapper usersModelMapper,AddUser addUser) {
+    this.getUsers = getUsers;
+    this.addUser = addUser;
     this.usersModelMapper = usersModelMapper;
     this.userSubject = BehaviorSubject.create();
   }
 
   void getUsers() {
-    add(Observable.just(new GetUsersUseCase.Action())
-        .compose(getUsersUseCase)
+    add(Observable.just(new GetUsers.Action())
+        .compose(getUsers)
         .map(usersModelMapper::map)
         .subscribe(userSubject::onNext,
             e -> userSubject.onNext(usersModelMapper.map(Users.error(e,null)))));
@@ -46,8 +46,8 @@ public class UsersViewModel extends BaseViewModel {
 
 
   public void addUser() {
-    add(addUserUseCase.execute(new AddUserUseCase.Action(User.builder().error(null)
-        .state(DomainModel.State.SUCCESS)
+    add(addUser.execute(new AddUser.Action(User.builder().error(null)
+        .state(State.SUCCESS)
         .gistsUrl("gist")
         .reposUrl("repo")
         .followingUrl("folo")

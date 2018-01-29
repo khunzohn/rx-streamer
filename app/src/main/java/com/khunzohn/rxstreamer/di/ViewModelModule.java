@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import com.khunzohn.rxstreamer.feature.main.user.UsersViewModel;
 import com.khunzohn.rxstreamer.feature.news.list.NewListViewModel;
+import com.khunzohn.rxstreamer.feature.student.AddStudentViewModel;
 import com.khunzohn.rxstreamer.viewmodel.ModelProviderFactory;
 import dagger.Binds;
 import dagger.Module;
@@ -25,6 +26,11 @@ abstract class ViewModelModule {
   @IntoMap
   @ViewModelKey(NewListViewModel.class)
   abstract ViewModel bindNewListViewModel(NewListViewModel newListViewModel);
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(AddStudentViewModel.class)
+  abstract ViewModel bindAddStudentViewModel(AddStudentViewModel addStudentViewModel);
 
   @Binds
   abstract ViewModelProvider.Factory bindProviderFactory(ModelProviderFactory providerFactory);

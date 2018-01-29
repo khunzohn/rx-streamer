@@ -10,8 +10,4 @@ public abstract class DomainModel {
   public abstract Throwable error();
 
   public abstract State state();
-
-  public enum State {
-    PROGRESS, ERROR, SUCCESS
-  }
 }

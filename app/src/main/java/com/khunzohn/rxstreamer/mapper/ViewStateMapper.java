@@ -6,11 +6,11 @@ import android.content.Context;
  * Created by khunzohn on 12/18/17.
  */
 
-public abstract class DomainMapper<V, D> {
+public abstract class ViewStateMapper<V, D> {
 
   private final Context context;
 
-  public DomainMapper(Context context) {
+  public ViewStateMapper(Context context) {
     this.context = context;
   }
 

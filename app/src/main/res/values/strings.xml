@@ -9,4 +9,5 @@
   <string name="error_message_unknown">Unknown Error</string>
   <string name="btn_label_dismiss">Dismiss</string>
   <string name="error_action_message_ok">Ok</string>
+  <string name="error_message_invalid_phone">Phone number is invalid</string>
 </resources>

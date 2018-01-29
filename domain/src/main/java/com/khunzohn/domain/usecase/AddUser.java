@@ -9,15 +9,14 @@ import io.reactivex.Completable;
 import javax.inject.Inject;
 
 /**
- * Created by KHUNZOHN on 12/1/18.
+ * Created by khunzohn on 12/1/18.
  */
 
-public class AddUserUseCase extends CompletableUseCase<AddUserUseCase.Action> {
+public class AddUser extends CompletableUseCase<AddUser.Action> {
 
   private final UserRepository userRepository;
 
-  @Inject
-  AddUserUseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread,UserRepository userRepository) {
+  @Inject AddUser(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread,UserRepository userRepository) {
     super(threadExecutor, postExecutionThread);
     this.userRepository = userRepository;
   }

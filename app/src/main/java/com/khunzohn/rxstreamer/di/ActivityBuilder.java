@@ -2,6 +2,7 @@ package com.khunzohn.rxstreamer.di;
 
 import com.khunzohn.rxstreamer.feature.main.MainActivity;
 import com.khunzohn.rxstreamer.feature.news.list.NewListActivity;
+import com.khunzohn.rxstreamer.feature.student.AddStudentActivity;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -16,4 +17,6 @@ abstract class ActivityBuilder {
 
   @ContributesAndroidInjector(modules = MainFragmentBuilder.class)
   abstract MainActivity contributeMainActivity();
+
+  @ContributesAndroidInjector abstract AddStudentActivity contributeAddStudentActivity();
 }
