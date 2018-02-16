@@ -5,4 +5,4 @@ RxStreamer utilizes clean-architecture, android view model, dagger and Rxjava to
 
 ![alt text](clean-mvvm.png)
 
-                                  Loading documentation ...
+
